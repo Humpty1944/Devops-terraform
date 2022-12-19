@@ -1,5 +1,3 @@
-## Providers ##
-
 terraform {
   required_providers {
     yandex = {
@@ -15,8 +13,6 @@ provider "yandex" {
   folder_id = ""
   zone      = "ru-central1-b"
 }
-
-## MySQL Database ##
 
 resource "yandex_mdb_mysql_cluster" "db_cluster" {
   name        = "cluster_dostavimvse"
@@ -85,8 +81,6 @@ resource "yandex_mdb_mysql_user" "dostavimvse" {
       max_user_connections     = 40
     }
 }
-
-## Servers ##
 
 resource "yandex_compute_instance" "vm-1" {
   name = "terraform1"
@@ -220,7 +214,6 @@ resource "yandex_compute_instance" "vm-2" {
   }
 }
 
-## Load balancer ##
 
 resource "yandex_alb_target_group" "foo" {
   name = "my-target-group"
@@ -315,8 +308,6 @@ resource "yandex_alb_load_balancer" "test-balancer" {
   }
 }
 
-## Network ##
-
 resource "yandex_vpc_network" "network-1" {
   name = "network1"
 }
@@ -327,8 +318,6 @@ resource "yandex_vpc_subnet" "subnet-1" {
   network_id     = yandex_vpc_network.network-1.id
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
-
-## DNS records ##
 
 resource "yandex_dns_zone" "zone1" {
   name        = "my-private-zone"
@@ -347,7 +336,6 @@ resource "yandex_dns_recordset" "rs1" {
   data    = ["c-${yandex_mdb_mysql_cluster.db_cluster.id}.rw.mdb.yandexcloud.net"]
 }
 
-## Outputs ##
 
 output "database_fqdn" {
   value = yandex_mdb_mysql_cluster.db_cluster.host.0.fqdn
