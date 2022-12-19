@@ -1,10 +1,10 @@
 # Task description
 
-Create Kubernetes setup for Yandex Cloud that supports:
+Create Terraform setup for Yandex Cloud that supports:
 
-- StatefulSet for database
-- feeding database from SQL script (you can watch how to execute SQL scripts inside the container on start)
- - Deployment and service for Web. Try to do scaled deployment
+- managed DB instance for cloud
+- feeding database from SQL script
+- provisioning server with tools for running server
 
 
 
